@@ -1,0 +1,45 @@
+VERSION 0.163 (Pre-Release)
+- Front-end functionality to OpenSSL embedded binary
+- Functionality for AES, BF, CAST, RC encryption/decryption
+- Functionality for MD, MDC2, RIPEMD, SHA
+- Summary that updates ten times per second to reflect the options selected by the user
+
+KNOWN BUGS/TODO IN 0.163
+- The initiate button would not disable if the synthesised command would cause openssl to fail (no error checking for directories/overwrite etc)
+- DES was not implemented (too tedious)
+- Error identification was not implemented
+
+VERSION 1.72 (Initial Release)
+- Hash mode will now disable the output field and change the text “Passphrase” to “Hash”, hide the passphrase textfield and replace it with a label where the hash would be printed
+- Added initiate-button disabling for problems that would commonly cause openssl to fail
+- Added identification for errors, which would show in the summary field (though this should not happen because of error checking that disables the initiate button)
+  - unknown errors should show up in the summary field as ‘unknown error’
+
+KNOWN BUGS/TODO IN 1.72
+- DES was not implemented
+
+VERSION 2.24
+- DES was finally implemented
+- Removed Print/Page Setup Options
+- Added energy efficiency measures that pauses the timer when the application is not in focus
+- implemented 1 and 8 bit AES CFB encryption
+- fixed bad decrypt error identification (obtaining task output was done ***before*** the task had finished)
+- Added focus rings for relevant buttons
+- Added checking for relative paths (if relativepath the initiate button cannot be clicked)
+
+KNOWN BUGS/TODO IN 2
+- spaces in filenames do not function as expected
+- crypt integration for directories?
+- disable button upon nstask initiation
+
+VERSION 2.38
+- spaces in filenames now work as expected (added 'quotes' around command arguments)
+- the initiate button is now disabled when NSTask is running and displays some status
+- crypt for directories cannot be integrated in a nice manner because the program would have no way to determine if the decrypted file is a .tar archive (the user may change the extension etc)
+
+KNOWN BUGS
+- the tab ordering/nextKeyView does not seem to function correctly:
+  - intended sequence is as follows:
+    - pathOutlet - browsePathButton - outputOutlet - browseOutputButton
+  - however, the current sequence is as follows:
+    - pathOutlet - outputOutlet - browsePathButton - browseOutputButton
